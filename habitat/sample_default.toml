@@ -1,0 +1,10 @@
+
+# Connection string for mongodb
+mongodb_uri = "cosmosdb_connection_string"
+
+# our secret key for Rails (don't check this in...)
+secret_key_base = "cb6bca2c702c8954382c30acb7ff98eaa1e53af5fe77292b9f825113ba6419714d39d1663ebabaf8ea138b4ed066252df7e77cb7dc27a7ec41f8bf61a728bbaa"
+
+# Rails related IP info
+rails_binding_ip = "0.0.0.0"
+rails_port = 3000
