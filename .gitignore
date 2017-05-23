@@ -1,4 +1,5 @@
 results/
 habitat/default.toml
+azure/.ssh
 
 .DS_Store
