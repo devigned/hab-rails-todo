@@ -56,10 +56,10 @@ https://portal.azure.com
 ##################
 
 # Once we have exported the docker image, push it to private registry and deploy to K8s
-docker tag devigned/rails-todo:latest habk8s2dk1.azurecr.io/rails-todo:latest
-docker push habk8s2dk1.azurecr.io/rails-todo:latest
+docker tag devigned/rails-todo:latest habk8s9ufw.azurecr.io/rails-todo:latest
+docker push habk8s9ufw.azurecr.io/rails-todo:latest
 
-kubectl run rails-todo --image=habk8s2dk1.azurecr.io/rails-todo:latest --port 3000
+kubectl run rails-todo --image=habk8s9ufw.azurecr.io/rails-todo:latest --port 3000
 kubectl get po
 kubectl expose deployment rails-todo --type=LoadBalancer
 # wait for the Public IP to be exposed
