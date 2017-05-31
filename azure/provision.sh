@@ -12,8 +12,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [[ -z $(az account list -o tsv 2>/dev/null ) ]]; then
     az login -o table
+    echo ""
 fi
-echo ""
 
 if [[ -z $(az group show -n ${group}) ]]; then
     echo "Creating Resource Group named ${group}"
@@ -79,14 +79,8 @@ if [[ -z $(which kubectl) ]]; then
     az acs kubernetes install-cli
 fi
 
-if [[ ! $(kubectl get secret registrykey) ]]; then
-    echo "Creating a Kubernetes secret named registrykey to auth with our Azure Container Registry"
-    az acr credential show -n ${registry_name} \
-        --query "join(' ', ['kubectl create secret docker-registry registrykey --docker-server ${registry}', '--docker-username', username, '--docker-password', passwords[0].value, '--docker-email example@example.com'])" \
-        --output tsv | sh 1>/dev/null
-else
-    echo "Already registered secret named registrykey to auth with Azure Container Registry"
-fi
+conn_string=$(az cosmosdb list-connection-strings -g ${group} -n ${cosmosdb_name} --query "connectionStrings[0].connectionString" -o tsv | sed -e 's/[\/&]/\\&/g')
+sed "s/{{cosmosdb_connection_string}}/${conn_string}/g" habitat/sample_default.toml > habitat/default.toml
 
 echo "Your Kubernetes cluster has been deployed and you are ready to connect."
 echo "To connect to the cluster run 'kubectl cluster-info'"

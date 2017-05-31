@@ -26,6 +26,6 @@ This folder contains all of the Rails source code. The ember todo list applicati
 Rails app has been pre-built and is included in the public directory. You can find a version of the 
 Ember todo application here: https://github.com/devigned/level1/tree/master/api-ruby/todo-ember.
 
-### [Demo Script](./flow.sh)
-The flow.sh script contains the rough instructions for running the demo. I'm sure there are some missing
+### [Demo Script](./demo.sh)
+The `demo.sh` script contains the rough instructions for running the demo. I'm sure there are some missing
 pieces, but it's pretty close.
